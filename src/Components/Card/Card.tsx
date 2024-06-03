@@ -8,7 +8,7 @@ import { StoreContextType } from "../../types/store-types";
 export const Card:React.FC<CardType> = ({
     suit, rank, id
 }) => {
- const { removeCards } = useContext<StoreContextType >( StoreContext)
+ const { removeCards } = useContext<StoreContextType>( StoreContext)
 
  const facecards: Record<number, string> = {
      "1": "Ace",
