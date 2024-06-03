@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import _ from 'lodash'
 import { CardType, StoreType } from "../types";
 import { createDeck } from "../lib/helper";
 import { StoreContextType } from "../types/store-types";
@@ -15,22 +16,22 @@ const StoreProvider: React.FC<StoreType> = ({children}) => {
   
     const shuffleCards = () => {
         const newCardState = [...cardsState] 
-        newCardState?.sort( () => Math.random() - 0.5);
-        
+        newCardState?.sort( () => Math.random() - 0.5);   
         setCardState(newCardState)
     
     }
 
     const sortCards = (): void => {
         const newCardState = [...cardsState]
-        //  need to update tthis
-        newCardState!.sort((a:CardType,b: CardType) => {
-         
-                return a?.suit!.localeCompare(b?.suit!)
-        
-        })
-        console.log(newCardState)
-        setCardState(newCardState)
+        const suits = ["H", "D", "C", "S"]
+        const sorted = []
+        for (let i = 0; i < suits.length; i++ ) {
+            let stuff = newCardState.filter((data) => data.suit === suits[i]).sort((a,b) => (a.rank> b.rank) ? 1 : ((b.rank > a.rank) ? -1 : 0))
+            sorted.push(stuff)
+        }
+
+        const flattenSortedArray = _.flatten(sorted)
+        setCardState(flattenSortedArray)
     }
   
     const removeCards = (id: string) => {

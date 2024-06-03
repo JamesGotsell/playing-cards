@@ -1,7 +1,7 @@
 
 export interface CardType {
     suit?: string;
-    rank?: number | string
+    rank: number | string
     id: string
 }
 
