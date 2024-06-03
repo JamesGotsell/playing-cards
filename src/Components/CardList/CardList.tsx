@@ -5,7 +5,7 @@ import { CardListProps } from '../../types'
 
 export const CardList:React.FC<CardListProps > = ({ cards }) => {
      return (
-        <div className='cardList'>
+        <div className='flex flex-wrap items-center justify-center '>
             { cards?.map((card) => {return <Card {...card}/> }) } 
         </div>
     )

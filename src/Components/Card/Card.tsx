@@ -20,7 +20,8 @@ export const Card:React.FC<CardType> = ({
     return (
         <>
             <div className="card">
-                <div>{`${cardRank} of ${suitMapper[`${suit}`]}`}  <button onClick={() => removeCards(id)}> draw card </button></div>
+                <div className="flex flex-col">{`${cardRank} of ${suitMapper[`${suit}`]}`}  
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={() => removeCards(id)}> Draw Card </button></div>
             </div>
         </>
        
