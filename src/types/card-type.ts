@@ -1,8 +1,8 @@
 
 export interface CardType {
-    suit?: string | undefined;
+    suit?: string;
     rank?: number | string
-    id?: string
+    id: string
 }
 
 export interface CardListProps {

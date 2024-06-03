@@ -1,28 +1,19 @@
-import React, {useEffect, useState } from 'react';
+import React, {useContext,} from 'react';
 
 import './App.css';
 import { CardList } from './Components/CardList/CardList';
-import { createDeck } from './lib/helper';
-import { CardType } from './types';
+import { StoreContext } from './Store/Store';
 
-const App = () => {
-  const [cardsState, setCardState] = useState<CardType[]>(createDeck())
-  
-  const shuffle = () => {
-      const newCardState = [...cardsState] 
-      newCardState?.sort( () => Math.random() - 0.5);
-      setCardState(newCardState)
-  
-  }
+const App:React.FC = () => {
 
-  useEffect(() => {
-    console.log(cardsState, "cards states")
-  }, [cardsState])
-  
+  const { cardsState, shuffleCards, sortCards } = useContext<any>( StoreContext)
+  console.log(cardsState)
   return (
     <div className="App">
-         <button onClick={() => shuffle()}>Shuffle</button>
-        <CardList cards={cardsState || []}/>
+        <h1>Deck of cards</h1>
+        <button onClick={() =>  shuffleCards()}>Shuffle</button>
+        <button onClick={() => sortCards()}>sort</button>
+        <CardList cards={cardsState}/>
     </div>
   );
 }
